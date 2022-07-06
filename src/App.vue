@@ -1,6 +1,9 @@
 <template>
   <div class="container">
-    <HeaderItem />
+    <HeaderItem @toogle-add-task="toogleAddTask" :showAddTask="showAddTask" />
+    <div v-if="showAddTask">
+      <AddTaskItem @add-task="addTask" />
+    </div>
     <TaskItems
       @toogle-reminder="toogleReminder"
       @delete-task="deleteTask"
@@ -12,23 +15,32 @@
 <script>
 import HeaderItem from "./components/Header";
 import TaskItems from "./components/Tasks";
+import AddTaskItem from "./components/AddTask";
 
 export default {
   name: "App",
   components: {
     HeaderItem,
     TaskItems,
+    AddTaskItem,
   },
   data() {
     return {
       tasks: [],
+      showAddTask: false,
     };
   },
   methods: {
+    addTask(task) {
+      this.tasks = [...this.tasks, task];
+    },
     deleteTask(id) {
       if (confirm("Are you sure?")) {
         this.tasks = this.tasks.filter((task) => task.id !== id);
       }
+    },
+    toogleAddTask() {
+      this.showAddTask = !this.showAddTask;
     },
     toogleReminder(id) {
       this.tasks = this.tasks.map((task) =>

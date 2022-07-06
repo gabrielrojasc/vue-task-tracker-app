@@ -1,7 +1,11 @@
 <template>
   <header>
     <h1>Task Tracker</h1>
-    <ButtonItem text="Add task" color="green" />
+    <ButtonItem
+      @btn-click="$emit('toogle-add-task')"
+      :text="showAddTask ? 'Close' : 'Add Task'"
+      :color="showAddTask ? 'red' : 'green'"
+    />
   </header>
 </template>
 
@@ -12,6 +16,9 @@ export default {
   name: "HeaderItem",
   components: {
     ButtonItem,
+  },
+  props: {
+    showAddTask: Boolean,
   },
 };
 </script>
