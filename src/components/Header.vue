@@ -2,6 +2,7 @@
   <header>
     <h1>Task Tracker</h1>
     <ButtonItem
+      v-show="homePage"
       @btn-click="$emit('toogle-add-task')"
       :text="showAddTask ? 'Close' : 'Add Task'"
       :color="showAddTask ? 'red' : 'green'"
@@ -19,6 +20,11 @@ export default {
   },
   props: {
     showAddTask: Boolean,
+  },
+  computed: {
+    homePage() {
+      return this.$route.path === "/";
+    },
   },
 };
 </script>
