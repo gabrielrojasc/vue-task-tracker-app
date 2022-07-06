@@ -1,16 +1,28 @@
 <template>
   <div class="container">
     <HeaderItem />
+    <TaskItems />
   </div>
 </template>
 
 <script>
 import HeaderItem from "./components/Header";
+import TaskItems from "./components/Tasks";
+import db from "../db.json";
 
 export default {
   name: "App",
   components: {
     HeaderItem,
+    TaskItems,
+  },
+  data() {
+    return {
+      tasks: [],
+    };
+  },
+  created() {
+    this.tasks = db;
   },
 };
 </script>
