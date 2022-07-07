@@ -1,8 +1,13 @@
-# vue-task-tracker
+# vue task tracker app
 
 ## Project setup
 ```
 npm install
+```
+
+### Runs the json-server for the api
+```
+npm run backend
 ```
 
 ### Compiles and hot-reloads for development
